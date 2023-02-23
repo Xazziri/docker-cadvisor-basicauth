@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  cadvisor:
+    image: xazziri/cadvisor-basicauth:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    devices:
+      - "/dev/kmsg:/dev/kmsg"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro

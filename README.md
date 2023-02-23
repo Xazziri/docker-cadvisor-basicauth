@@ -1,6 +1,6 @@
 # docker-cadvisor-basicauth
 
-[cAdvisor](https://github.com/google/cadvisor) wrapped in a container with basic auth enabled.
+[cAdvisor](https://gcr.io/cadvisor/cadvisor:v0.47.1) wrapped in a container with basic auth enabled.
 
 ## Running the container
 
@@ -8,15 +8,17 @@ The container can be run without any configuration but to set your own username 
 
 First, using a CLI, install a local copy to the machine you want to serve cAdvisor from:
 
-`git clone https://github.com/tim545/docker-cadvisor-basicauth`
+`git clone https://github.com/Xazziri/docker-cadvisor-basicauth.git`
 
 `cd docker-cadvisor-basicauth/`
 
-Build the image using the Docker `build` command:
+Change password and username in Dockerfile and build the image using the Docker `build` command:
+
+`docker build .`
+
+or use the `--build-arg` parameters, you can set those as any username and password values you want:
 
 `docker build --build-arg USERNAME=admin --build-arg PASSWORD=Password1 -t tim545/cadvisor-basicauth .`
-
-_Take note of the `--build-arg` parameters, you can set those as any username and password values you want._
 
 To run your container use the `run` command:
 
@@ -30,7 +32,7 @@ docker run \
   --detach=true \
   --name=cadvisor-basicauth \
   --restart=always \
- tim545/cadvisor-basicauth:latest
+ Xazziri/cadvisor-basicauth:latest
 ```
 
 _Note: This command can be run without the steps above, however your username, password and port settings will be the default values, which is ok for testing but too insecure for any production environment._
@@ -59,4 +61,4 @@ Please feel free to raise an Issue or send me a PR
 
 ## @Mentions
 
-I started this project after reading the comments from @exetico and @vmarmol on this [Issue](https://github.com/google/cadvisor/issues/784#issuecomment-279984056)
+Forked from https://github.com/tim545/docker-cadvisor-basicauth
